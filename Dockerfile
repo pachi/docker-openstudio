@@ -24,6 +24,10 @@ RUN apt-get update && apt-get install -y ca-certificates curl gdebi-core git lib
     && rm -rf /usr/SketchUpPlugin \
     && rm -rf /var/lib/apt/lists/*
 
+RUN mkdir -p /usr/share/openstudio-$OPENSTUDIO_VERSION/OSApp/
+RUN cp -r /usr/Resources/* /usr/share/openstudio-$OPENSTUDIO_VERSION/OSApp/
+RUN cp /usr/Resources/hvaclibrary/hvac_library.osm /usr/share/openstudio-$OPENSTUDIO_VERSION/OSApp/hvaclibrary/
+
 # Build and install Ruby 2.0 using rbenv for flexibility
 RUN git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
 RUN git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
